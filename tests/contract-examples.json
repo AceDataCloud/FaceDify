@@ -1,0 +1,15 @@
+[
+  {
+    "name": "face_transform-1",
+    "tool": "face_transform",
+    "inputs": {
+      "action": "keypoints",
+      "image_url": "https://example.org/reference.png"
+    },
+    "method": "POST",
+    "path": "/face/analyze",
+    "body": {
+      "image_url": "https://example.org/reference.png"
+    }
+  }
+]
