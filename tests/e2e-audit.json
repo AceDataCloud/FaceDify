@@ -1,0 +1,48 @@
+{
+  "tested_at": "2026-10-07T08:53:40.432619+00:00",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local",
+  "transport": "official remote-debug; signature verification enabled",
+  "browser_test_run": true,
+  "unit_contract_tests": "25 passed, 1 warning in 0.46s",
+  "marketplace_toolkit_passed": true,
+  "package_sha256": "dbdfacee8daf6c47dd86c5c6d4876c7af327ceea02ac93efc8a591689ef76bec",
+  "exact_package_serverless_install_passed": true,
+  "marketplace_install_tested": false,
+  "cloud_tested": false,
+  "cases": [
+    {
+      "case": "Face Current Icon Audit",
+      "tool": "face_transform",
+      "workflow_run_id": "0febacd7-dbe3-4e32-92f5-745708d7c4f4",
+      "workflow_status": "succeeded",
+      "service_status": "succeeded",
+      "task_id": "",
+      "trace_id": "",
+      "media_urls": [],
+      "error": null,
+      "new_submission": true,
+      "billing": [
+        {
+          "id": "5070afd4-dd7c-4d26-913c-5b49cda18a87",
+          "trace_id": "b327189b-397c-4087-b5d9-0a67ddedcbf9",
+          "status_code": 200,
+          "deducted_amount": 0.0025,
+          "created_at": "2026-10-07T08:37:57.789009Z"
+        }
+      ],
+      "billing_match": "owned credential, API and browser run window",
+      "media_verification": [],
+      "result_fields": [
+        "face_model_version",
+        "face_shape_set",
+        "image_height",
+        "image_width"
+      ],
+      "structured_result_nonempty": true,
+      "screenshot": "evidence/face-current-icon-audit.png",
+      "workflow": "evidence/face-current-icon-audit-workflow.json"
+    }
+  ],
+  "primary_blocked": false,
+  "scope_note": "Recorded cases only. Batch regressions reuse earlier paid successful tasks; those media generations are not billed or claimed as new. New paid calls have separate usage reconciliation. Optional untested models/actions are not claimed as passed; original failures and their corrections are preserved."
+}

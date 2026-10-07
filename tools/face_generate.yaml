@@ -110,15 +110,10 @@ parameters:
     zh_Hans: 年龄信息
   human_description:
     en_US: 'Required for age. JSON array such as [{"age": 30}]. Enter a JSON array.
-      Enter a JSON array or object where applicable. Enter a JSON array or object
-      where applicable. Enter a JSON array or object where applicable. Enter a JSON
-      array or object where applicable. Enter a JSON array or object where applicable.'
-    zh_Hans: 'age 操作必填。JSON 数组，例如 [{"age": 30}]。 请填写 JSON 数组。 数组或对象请使用 JSON 格式。 数组或对象请使用
-      JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。'
+      Enter a JSON array or object where applicable.'
+    zh_Hans: 'age 操作必填。JSON 数组，例如 [{"age": 30}]。 请填写 JSON 数组。 数组或对象请使用 JSON 格式。'
   llm_description: 'Required for age. JSON array such as [{"age": 30}]. Enter a JSON
-    array. Enter a JSON array or object where applicable. Enter a JSON array or object
-    where applicable. Enter a JSON array or object where applicable. Enter a JSON
-    array or object where applicable. Enter a JSON array or object where applicable.'
+    array. Enter a JSON array or object where applicable.'
 - name: gender_infos
   type: string
   required: false
@@ -128,16 +123,10 @@ parameters:
     zh_Hans: 性别信息
   human_description:
     en_US: 'Required for gender. JSON array such as [{"gender": 1}]. Enter a JSON
-      array. Enter a JSON array or object where applicable. Enter a JSON array or
-      object where applicable. Enter a JSON array or object where applicable. Enter
-      a JSON array or object where applicable. Enter a JSON array or object where
-      applicable.'
-    zh_Hans: 'gender 操作必填。JSON 数组，例如 [{"gender": 1}]。 请填写 JSON 数组。 数组或对象请使用 JSON 格式。
-      数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。 数组或对象请使用 JSON 格式。'
+      array. Enter a JSON array or object where applicable.'
+    zh_Hans: 'gender 操作必填。JSON 数组，例如 [{"gender": 1}]。 请填写 JSON 数组。 数组或对象请使用 JSON 格式。'
   llm_description: 'Required for gender. JSON array such as [{"gender": 1}]. Enter
-    a JSON array. Enter a JSON array or object where applicable. Enter a JSON array
-    or object where applicable. Enter a JSON array or object where applicable. Enter
-    a JSON array or object where applicable. Enter a JSON array or object where applicable.'
+    a JSON array. Enter a JSON array or object where applicable.'
 - name: timeout
   type: number
   required: false
