@@ -1,0 +1,39 @@
+version: 0.0.1
+type: plugin
+author: acedatacloud
+name: face
+label:
+  en_US: Face Transform
+  zh_Hans: Face Transform
+  ja_JP: Face Transform
+  pt_BR: Face Transform
+description:
+  en_US: Use the Ace Data Cloud Face Transform APIs in Dify workflows.
+  zh_Hans: 在 Dify 工作流中使用 Ace Data Cloud Face Transform API。
+icon: icon.jpg
+icon_dark: icon.jpg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+  - provider/face.yaml
+meta:
+  version: 0.0.1
+  minimum_dify_version: 1.17.1
+  arch:
+  - amd64
+  - arm64
+  runner:
+    language: python
+    version: '3.12'
+    entrypoint: main
+created_at: '2026-10-07T12:00:00+08:00'
+privacy: PRIVACY.md
+repo: https://github.com/AceDataCloud/FaceDify
+contact: dev@acedata.cloud
+network:
+  domains:
+  - api.acedata.cloud

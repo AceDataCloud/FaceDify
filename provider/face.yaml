@@ -1,0 +1,34 @@
+identity:
+  author: acedatacloud
+  name: face
+  label:
+    en_US: Face Transform
+    zh_Hans: Face Transform
+    ja_JP: Face Transform
+    pt_BR: Face Transform
+  description:
+    en_US: Use the Ace Data Cloud Face Transform APIs in Dify workflows.
+    zh_Hans: 在 Dify 工作流中使用 Ace Data Cloud Face Transform API。
+  icon: icon.jpg
+  icon_dark: icon.jpg
+  tags:
+  - image
+credentials_for_provider:
+  acedata_bearer_token:
+    type: secret-input
+    required: true
+    label:
+      en_US: Ace Data Cloud Bearer Token
+      zh_Hans: Ace Data Cloud Token
+    placeholder:
+      en_US: Paste your token (without "Bearer ")
+      zh_Hans: 粘贴 Token（不需要带 Bearer）
+    help:
+      en_US: Acquire a token with access to this service from the Ace Data Cloud console.
+      zh_Hans: 从 Ace Data Cloud 控制台获取具有此服务权限的 Token。
+    url: https://platform.acedata.cloud/console/credentials
+tools:
+- tools/face_generate.yaml
+extra:
+  python:
+    source: provider/face.py

@@ -1,0 +1,17 @@
+{
+  "backend_revision": "7b4bbf0e4f6b83c273baed1d5b8e9bea0f3ece1c",
+  "apis": [
+    {
+      "path": "/face/analyze",
+      "spec": "openapi/e4fbc3b6-4f44-48fb-a049-40f5c27c7cd3.json"
+    }
+  ],
+  "icon_source": {
+    "repository": "AceDataCloud/Dify",
+    "revision": "eaf0e68cd34cfe4cadece7a9ee34a98aac6b961e^",
+    "path": "plugins/face/_assets/icon.jpg"
+  },
+  "icon_sha256": {
+    "icon.jpg": "3bdece7e53dab71af0a159829af3585327b2236e5c933d70f8cbba9ce454b52a"
+  }
+}

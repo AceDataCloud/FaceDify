@@ -1,0 +1,39 @@
+{
+  "tested_at": "2026-10-07T06:27:28.351892+00:00",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local",
+  "transport": "official remote-debug; signature verification true",
+  "browser_test_run": true,
+  "marketplace_install_tested": false,
+  "cloud_tested": false,
+  "cases": [
+    {
+      "case": "Face Dify E2E Retry",
+      "operation": "face_transform",
+      "workflow_run_id": "72235b39-74a1-42b7-9bd4-634a71de4412",
+      "workflow_status": "succeeded",
+      "task_status": "succeeded",
+      "task_id": "",
+      "trace_id": "c608e162-5002-4644-baf0-c71dcb5d821c",
+      "media_urls": [],
+      "output": {
+        "face_model_version": "3.0",
+        "face_shape_set": [
+          {}
+        ],
+        "image_height": 2048,
+        "image_width": 2048
+      },
+      "billing": {
+        "id": "97219bd0-e060-4fb3-99d1-c535f42286b6",
+        "trace_id": "c608e162-5002-4644-baf0-c71dcb5d821c",
+        "status_code": 200,
+        "deducted_amount": 0.0025,
+        "created_at": "2026-10-07T06:08:26.454957Z"
+      },
+      "media_verification": [],
+      "screenshot": "evidence/face-dify-e2e-retry.png",
+      "workflow": "evidence/face-dify-e2e-retry-workflow.json"
+    }
+  ],
+  "scope_note": "These completed cases establish the primary plugin operation. Additional exposed operations require their own case before claiming full coverage."
+}
