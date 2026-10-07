@@ -1,0 +1,35 @@
+{
+  "backend_revision": "fa94598267a82545fb1afed6ee26bafd6cbb9ca7",
+  "mcp_revision": "f0eed10abf310824cb4c33d4944c63d3654ac95b",
+  "tools": [
+    {
+      "tool": "face_transform",
+      "method": "POST",
+      "path": "/face/analyze",
+      "parameters": [
+        "mode",
+        "image_url",
+        "face_model_version",
+        "need_rotate_detection",
+        "smoothing",
+        "whitening",
+        "face_lifting",
+        "eye_enlarging",
+        "age_infos",
+        "gender_infos",
+        "timeout",
+        "callback_url",
+        "source_image_url",
+        "target_image_url",
+        "action"
+      ],
+      "aliases": {},
+      "schema_source": "openapi/e4fbc3b6-4f44-48fb-a049-40f5c27c7cd3.json"
+    }
+  ],
+  "mcp_scope": "face",
+  "notes": [
+    "Informational MCP model/action lists are represented by tool dropdowns and README capability tables.",
+    "GPT Image covers image-generation/editing/task capabilities of the broader OpenAI MCP; chat is supplied by ModelProviderDify."
+  ]
+}

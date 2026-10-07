@@ -1,0 +1,101 @@
+{
+  "mcp_revision": "f0eed10abf310824cb4c33d4944c63d3654ac95b",
+  "mapping": [
+    {
+      "mcp_tool": "face_detect_keypoints",
+      "dify_tools": [
+        "face_transform"
+      ],
+      "parameters": {
+        "image_url": "image_url",
+        "mode": "mode",
+        "face_model_version": "face_model_version",
+        "need_rotate_detection": "need_rotate_detection"
+      },
+      "unresolved": [],
+      "note": "Select action=keypoints"
+    },
+    {
+      "mcp_tool": "face_beautify",
+      "dify_tools": [
+        "face_transform"
+      ],
+      "parameters": {
+        "image_url": "image_url",
+        "smoothing": "smoothing",
+        "whitening": "whitening",
+        "face_lifting": "face_lifting",
+        "eye_enlarging": "eye_enlarging"
+      },
+      "unresolved": [],
+      "note": "Select action=beautify"
+    },
+    {
+      "mcp_tool": "face_change_age",
+      "dify_tools": [
+        "face_transform"
+      ],
+      "parameters": {
+        "image_url": "image_url",
+        "age_infos": "age_infos"
+      },
+      "unresolved": [],
+      "note": "Select action=age"
+    },
+    {
+      "mcp_tool": "face_change_gender",
+      "dify_tools": [
+        "face_transform"
+      ],
+      "parameters": {
+        "image_url": "image_url",
+        "gender_infos": "gender_infos"
+      },
+      "unresolved": [],
+      "note": "Select action=gender"
+    },
+    {
+      "mcp_tool": "face_swap",
+      "dify_tools": [
+        "face_transform"
+      ],
+      "parameters": {
+        "source_image_url": "source_image_url",
+        "target_image_url": "target_image_url",
+        "callback_url": "callback_url",
+        "timeout": "timeout"
+      },
+      "unresolved": [],
+      "note": "Select action=swap"
+    },
+    {
+      "mcp_tool": "face_cartoonize",
+      "dify_tools": [
+        "face_transform"
+      ],
+      "parameters": {
+        "image_url": "image_url"
+      },
+      "unresolved": [],
+      "note": "Select action=cartoon"
+    },
+    {
+      "mcp_tool": "face_detect_liveness",
+      "dify_tools": [
+        "face_transform"
+      ],
+      "parameters": {
+        "image_url": "image_url"
+      },
+      "unresolved": [],
+      "note": "Select action=liveness"
+    },
+    {
+      "mcp_tool": "face_get_usage_guide",
+      "dify_tools": [],
+      "parameters": {},
+      "unresolved": [],
+      "note": "Model/action selectors and the API reference; informational guidance does not submit a request."
+    }
+  ]
+}

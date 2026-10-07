@@ -9,8 +9,8 @@ identity:
   description:
     en_US: Use the Ace Data Cloud Face Transform APIs in Dify workflows.
     zh_Hans: 在 Dify 工作流中使用 Ace Data Cloud Face Transform API。
-  icon: icon.jpg
-  icon_dark: icon.jpg
+  icon: icon.svg
+  icon_dark: icon.svg
   tags:
   - image
 credentials_for_provider:
