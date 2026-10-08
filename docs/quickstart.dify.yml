@@ -1,0 +1,172 @@
+app:
+  description: Real Dify integration verification with Ace Data Cloud
+  icon: null
+  icon_background: null
+  icon_type: emoji
+  mode: workflow
+  name: Face Transform Step-by-step Tutorial
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: acedatacloud/face:0.0.1@ef606e6198f0e623b71f463daa8bd6ec0fa4f0e205fc06adbe63e3d97fc6a99d
+    version: null
+kind: app
+version: 0.7.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload: {}
+    sensitive_word_avoidance:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: start-generate
+      source: start
+      sourceHandle: source
+      target: generate
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: end
+      id: generate-end
+      source: generate
+      sourceHandle: source
+      target: end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 73
+      id: start
+      position:
+        x: 0
+        y: 100
+      positionAbsolute:
+        x: 0
+        y: 100
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        desc: ''
+        plugin_unique_identifier: acedatacloud/face:0.0.1@ef606e6198f0e623b71f463daa8bd6ec0fa4f0e205fc06adbe63e3d97fc6a99d
+        provider_id: acedatacloud/face/face
+        provider_name: acedatacloud/face/face
+        provider_type: builtin
+        retry_config:
+          max_retries: 0
+          retry_enabled: false
+          retry_interval: 1000
+        selected: false
+        title: Face Transform
+        tool_configurations:
+          action:
+            type: constant
+            value: keypoints
+          image_url:
+            type: constant
+            value: https://platform2.cdn.acedata.cloud/seedream/00355681-7e81-49a4-a8fc-d2165fe1e9fd.jpg
+          mode:
+            type: constant
+            value: 1
+        tool_label: Face Transform
+        tool_name: face_transform
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 140
+      id: generate
+      position:
+        x: 300
+        y: 100
+      positionAbsolute:
+        x: 300
+        y: 100
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - generate
+          - status
+          variable: status
+        - value_selector:
+          - generate
+          - success
+          variable: success
+        - value_selector:
+          - generate
+          - task_id
+          variable: task_id
+        - value_selector:
+          - generate
+          - trace_id
+          variable: trace_id
+        - value_selector:
+          - generate
+          - media_urls
+          variable: media_urls
+        - value_selector:
+          - generate
+          - data
+          variable: data
+        - value_selector:
+          - generate
+          - result
+          variable: result
+        - value_selector:
+          - generate
+          - files
+          variable: files
+        selected: true
+        title: Output
+        type: end
+      height: 270
+      id: end
+      position:
+        x: 600
+        y: 100
+      positionAbsolute:
+        x: 600
+        y: 100
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+      zIndex: 0
+    viewport:
+      x: 60
+      y: 160
+      zoom: 0.8
+  rag_pipeline_variables: []

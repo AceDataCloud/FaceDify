@@ -1,60 +1,106 @@
-# Face Transform for Dify
+# Face Transform for Dify: step-by-step guide
 
-Use the Ace Data Cloud Face Transform APIs in Dify workflows. Maintained by Ace Data Cloud. The plugin is free; API calls require your own authorized account and use the current service pricing.
+Analyze facial keypoints in an authorized image. This guide takes you from your first API key to the result in a Dify Workflow. Screenshots use Dify CE 1.17.1 in English; later versions may move the same controls.
 
-## Setup
+[Read in Simplified Chinese](https://github.com/AceDataCloud/FaceDify/blob/main/readme/README_zh_Hans.md) · [API and pricing](https://platform.acedata.cloud/models)
 
-1. Activate the service at [Ace Data Cloud](https://platform.acedata.cloud/console/applications), check [current pricing](https://platform.acedata.cloud/models), and create an API token with the required service access.
-2. Install from [Dify Marketplace](https://marketplace.dify.ai/plugin/acedatacloud/face). This version is published and was installed through the official Marketplace flow in Dify CE 1.17.1 with signature verification enabled. Installation is optional; this does not mean Dify preinstalls the plugin.
-3. In Dify's **Plugins / Tools** page, authorize this provider with **Bearer Token** (`acedata_bearer_token`). Do not include credentials in prompts or exported workflows. Credential validation never generates media. For this synchronous service, saving validates the credential shape; the first real call verifies service access.
+## 1. Install the correct plugin
 
-## Tools
+Open [Face Transform by acedatacloud](https://marketplace.dify.ai/plugin/acedatacloud/face) in Dify Marketplace. Check the author is **acedatacloud**, choose **Install**, and select your Dify workspace. In your Dify workspace, open **Integrations → Tools → Tool Plugin** and select **Face Transform**. Its card should say **From Marketplace**.
 
-| Tool | API |
+If your Dify server cannot open Marketplace, ask its administrator to enable outbound access and plugin installation. The plugin needs HTTPS to `api.acedata.cloud`.
+
+![Installed plugin in Dify](https://raw.githubusercontent.com/AceDataCloud/FaceDify/887fa46ee37d554be8e0be94f37d7413464e894c/_assets/tutorial/01-installed.png)
+
+## 2. Get an API key with the correct access
+
+1. Sign in at [Ace Data Cloud → Applications](https://platform.acedata.cloud/console/applications).
+2. Open **General application**. Its API key can access multiple services your account is entitled to use. A service-specific key is limited to that service. For this tutorial, check **Face Transform** access and current pricing/balance before generating.
+3. To reuse the selected key, click the copy icon marked **1** below. To create a separate Dify key, click **Manage Keys** marked **2**, then **Create**.
+
+![Copy an existing API key or open Manage Keys](https://raw.githubusercontent.com/AceDataCloud/FaceDify/887fa46ee37d554be8e0be94f37d7413464e894c/_assets/tutorial/get-api-key-en.png)
+
+4. Give the new key a name, such as `Dify tutorial`. Set expiration and usage/API restrictions only as needed, then click **Create**. Return to the key list or application card and copy the key. If **Allowed APIs** is enabled, include the synchronous API used here: `/face/analyze`.
+
+![Create an optional separate key](https://raw.githubusercontent.com/AceDataCloud/FaceDify/887fa46ee37d554be8e0be94f37d7413464e894c/_assets/tutorial/create-api-key-en.png)
+
+Copy only the token string. Do not add `Bearer `, quotation marks, or the screenshot's redacted characters. A platform management token (for example, a `platform-...` token) is not the generation API key this plugin expects. Confirm service access and a sufficient balance before the first run.
+
+## 3. Authorize Face Transform in Dify
+
+1. Open **Integrations → Tools → Tool Plugin → Face Transform**.
+2. Click **API Key Authorization Configuration**. If an authorization already exists, click **1 Authorization** first, then the configuration button.
+3. Enter an **Authorization Name**, such as `Ace Data Cloud`, and paste the copied token into **Ace Data Cloud Bearer Token**.
+4. Choose who may use the credential and click **Save**. Never put a key in a prompt or workflow export.
+
+![Dify tool authorization dialog](https://raw.githubusercontent.com/AceDataCloud/FaceDify/887fa46ee37d554be8e0be94f37d7413464e894c/_assets/tutorial/02-authorize.png)
+
+## 4. Build your first Workflow
+
+Open **Studio → Create → Create from Blank → Workflow**, name it, and create this path by dragging from each node's right connector to the next node:
+
+**Start → Face Transform → Output**.
+
+Use the **+** button to add a **Tool**, select this plugin, and choose the exact action above. Rename the tool node **Face Transform** to match the screenshots. Leave Start inputs empty for this fixed first example. Keep **Retry on Failure** off on the generation node.
+
+![Workflow connections](https://raw.githubusercontent.com/AceDataCloud/FaceDify/887fa46ee37d554be8e0be94f37d7413464e894c/_assets/tutorial/03-workflow.png)
+
+Select **Face Transform** and set these fields. Leave unmentioned optional fields empty.
+
+| Dify field | First-run value |
 |---|---|
-| `face_transform` | `POST /face/analyze` |
+| Action (`action`) | `keypoints` |
+| Analyze Mode (`mode`) | `1` |
 
-See [CAPABILITIES.md](CAPABILITIES.md) for the current MCP comparison and parameter equivalents. All exposed inputs follow the current published API; model combinations and availability still depend on the service.
+**Image URL** (`image_url`):
 
-## Run a workflow
-
-For generation, use **Start → generation tool → task retrieval → Output**. Fill the prompt/text and model, and enter arrays/objects as JSON. Optional values can be left empty. The example requests in [tests/contract-examples.json](https://github.com/AceDataCloud/FaceDify/blob/main/tests/contract-examples.json) show valid shapes; example.org URLs are placeholders that must be replaced with your own accessible media.
-
-A submission can return `status=pending` with `task_id`. Save that ID, then use the retrieval tool with `wait_seconds=0` to read once, or 1–240 for a bounded wait. If still pending, query the same task again. Disable automatic retries on generation nodes. No paid request is automatically retried and no substitute model is selected.
-
-`status`, `success`, `task_id`, `trace_id`, `media_urls`, `data`, and `result` are available as Dify variables. Only a terminal successful result has `success=true`; intermediate previews remain pending. Batch queries preserve the state of each item. Terminal task failures raise a tool error. Synchronous search, text and management results are returned directly in `data`/`result`. The plugin does not execute model-generated tools.
-
-The table maps service operations to Dify tools. Different MCP helper functions may use the same action selector or structured JSON input.
-
-Task/query calls retry transport failures at most twice. Generation has one attempt and a 10-second connect / 60-second read timeout. After a timeout, inspect [request history](https://platform.acedata.cloud/console/usages) before resubmitting; the accepted task may still be running. Delete/archive operations require `confirm=true`.
-
-## Branding and privacy
-
-The plugin uses the exact existing system asset recorded in [branding provenance](https://github.com/AceDataCloud/FaceDify/blob/main/tests/branding-source.json), for both light and dark icons. No logo was generated or redrawn. Asset SHA256: `cd7e8a610a6a099c7f4037781725f8da2c08d414f9efa00094fe0c6ea136758c`.
-
-Requests go directly to `https://api.acedata.cloud`. The plugin passes reference URLs to that API and returns media links; it does not fetch arbitrary reference URLs. Dify may fetch/render output links under its own policies. Never submit media you lack permission to process. See [PRIVACY.md](PRIVACY.md).
-
-API charges are recorded in Credits in your Ace Data Cloud account. Check the actual usage ledger; Dify execution counts are not a billing ledger. USD = Credits × your current package price / amount.
-
-## Development and evidence
-
-Python 3.12 is required. Install `requirements.txt`, then run:
-
-```sh
-python -m pytest tests -q
-ruff check .
-ruff format --check .
-dify plugin package .
+```text
+https://platform2.cdn.acedata.cloud/seedream/00355681-7e81-49a4-a8fc-d2165fe1e9fd.jpg
 ```
 
-Source contracts, MCP mappings, brand provenance and offline cases are in `tests/`. Recorded real Dify results state their exact coverage; they do not establish all models/options or Dify Cloud/Marketplace installation. See [tests/README.md](https://github.com/AceDataCloud/FaceDify/blob/main/tests/README.md).
+This example only analyzes keypoints with **Action** `keypoints`; it does not change the face. Use your own authorized image URL. The pictured fictional portrait is a previously generated test image.
 
-- Source: https://github.com/AceDataCloud/FaceDify
-- Issues: https://github.com/AceDataCloud/FaceDify/issues
-- Contact: dev@acedata.cloud
-- License: MIT
-- [Simplified Chinese](readme/README_zh_Hans.md)
+![Fill the generation or search parameters](https://raw.githubusercontent.com/AceDataCloud/FaceDify/887fa46ee37d554be8e0be94f37d7413464e894c/_assets/tutorial/03-configure.png)
 
-## Official Marketplace verification
+## 5. Return the synchronous result
 
-[Install from Dify Marketplace](https://marketplace.dify.ai/plugin/acedatacloud/face). Version 0.0.1 was downloaded and installed through the official Marketplace flow on October 8, 2026, with signature verification enabled and no remote-debug process. The installed plugin then completed the recorded real Dify workflow. [Verification data](tests/marketplace-acceptance.json) and [original Dify screenshot](tests/evidence/marketplace-20261008.png) document the exact scope. This proves optional Marketplace availability, not default installation or featured placement.
+Add an **Output** node and map `status` to **Face Transform → status**, `success` to **Face Transform → success**, and `data` to **Face Transform → data**. No task-query or waiting node is required. Click **Test Run → Start Run**. Inspect the returned structured face-analysis data. An input with no detectable face may return empty analysis instead of an image.
+
+![Synchronous output mapping](https://raw.githubusercontent.com/AceDataCloud/FaceDify/887fa46ee37d554be8e0be94f37d7413464e894c/_assets/tutorial/05-output.png)
+
+## 6. Check the expected output
+
+A completed result has this shape (the URL below illustrates the field; use your own returned URL):
+
+```json
+{
+  "status": "succeeded",
+  "success": true,
+  "data": {
+    "face_shape_set": [],
+    "image_width": 1024,
+    "image_height": 1024
+  }
+}
+```
+
+![Actual completed Dify result](https://raw.githubusercontent.com/AceDataCloud/FaceDify/887fa46ee37d554be8e0be94f37d7413464e894c/_assets/tutorial/06-result.png)
+
+Actual run example; your task ID and media URL will differ.
+
+## Troubleshooting
+
+| What you see | What to do |
+|---|---|
+| Authorization fails / 401 or 403 | Copy the full API token, remove `Bearer `, check service access, balance, expiration and Allowed APIs. |
+| Invalid parameter / 400 | Copy the exact example model, action, resolution and JSON shape. Do not combine unrelated action fields. |
+| HTTP 429 | Wait, reduce concurrency and check service limits; do not enable automatic paid retries. |
+| Timeout / 5xx / failed task | Inspect the original task or request history before resubmitting. Contact support with task/trace ID, never your key. |
+
+[Download the ready-to-import workflow](https://github.com/AceDataCloud/FaceDify/raw/refs/heads/main/docs/quickstart.dify.yml). Import it in Studio, then configure your own key; the file contains no credentials.
+
+## Privacy, cost and support
+
+The free plugin sends your chosen inputs and token to `api.acedata.cloud`; API calls follow current service pricing. Keys stay in Dify credential storage. See [Privacy](https://github.com/AceDataCloud/FaceDify/blob/main/PRIVACY.md). Only submit content you have permission to process.
+
+[Source](https://github.com/AceDataCloud/FaceDify) · [Report a problem](https://github.com/AceDataCloud/FaceDify/issues) · dev@acedata.cloud · [Advanced capabilities](https://github.com/AceDataCloud/FaceDify/blob/main/CAPABILITIES.md). Development and test evidence live in the source repository, separate from this first-run guide.
