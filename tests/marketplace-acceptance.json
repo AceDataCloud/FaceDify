@@ -1,0 +1,34 @@
+{
+  "repo": "FaceDify",
+  "marketplace_url": "https://marketplace.dify.ai/plugin/acedatacloud/face",
+  "identifier": "acedatacloud/face:0.0.1@ef606e6198f0e623b71f463daa8bd6ec0fa4f0e205fc06adbe63e3d97fc6a99d",
+  "installation_source": "marketplace",
+  "workflow_id": "ac73802e-4c66-42ff-b660-78e0339bf659",
+  "workflow_status": "succeeded",
+  "service_status": "succeeded",
+  "case": "Face Transform Marketplace Installed",
+  "media_urls": [],
+  "outputs": {
+    "status": "succeeded",
+    "success": true,
+    "task_id": "",
+    "trace_id": ""
+  },
+  "icon_matches_source": true,
+  "billing": {
+    "id": "c6f5968d-f197-4597-953e-aacd835af9da",
+    "trace_id": "48d20fd1-a01b-4dac-9a8e-1dce787b7977",
+    "status_code": 200,
+    "deducted_amount": 0.0025,
+    "created_at": "2026-10-08T01:19:56.827697Z",
+    "api_id": "e4fbc3b6-4f44-48fb-a049-40f5c27c7cd3"
+  },
+  "tested_at": "2026-10-08T01:26:57.567309+00:00",
+  "environment": "Dify CE 1.17.1 / plugin daemon 0.6.10-local",
+  "signature_verification_enabled": true,
+  "remote_debug_used": false,
+  "marketplace_install_tested": true,
+  "cloud_tested": false,
+  "screenshot": "evidence/marketplace-20261008.png",
+  "workflow": "evidence/marketplace-20261008-workflow.json"
+}
