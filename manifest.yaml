@@ -12,6 +12,8 @@ description:
   zh_Hans: 在 Dify 工作流中使用 Ace Data Cloud Face Transform API。
 icon: icon.svg
 icon_dark: icon.svg
+tags:
+  - image
 resource:
   memory: 268435456
   permission:
